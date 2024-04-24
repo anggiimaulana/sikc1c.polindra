@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri Video - SIKC 1C</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        .navbar-nav .dropdown:hover .dropdown-menu {
+        display: block;
+        animation: fadeIn 0.2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .carousel-control-prev, .carousel-control-next {
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 5px;
+            border: none;
+        }
+        @media (min-width: 768px) {
+            .footer-section {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+
+        .carousel-control-prev-icon, .carousel-control-next-icon {
+            font-size: 30px;
+            color: #000;
+        }
+
+        .carousel-control-prev {
+            left: 0;
+        }
+
+        .carousel-control-next {
+            right: 0;
+        }
+
+        .carousel-control-prev:hover, .carousel-control-next:hover {
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .dropdown-menu a:hover {
+            color: #fff !important; /* Ubah warna teks menjadi putih */
+            background-color: #007bff !important; /* Ubah warna latar belakang */
+            transition: all 0.2s ease ; /* Tambahkan efek transisi */
+        }
+
+        .navbar-nav .nav-link.active {
+            color: #000 !important; /* Warna teks aktif */
+        }
+
+        .navbar-nav .nav-link {
+            transition: all 0.3s ease; /* Efek transisi untuk semua perubahan */
+        }
+
+        .navbar-nav .nav-link:hover {
+            font-size: 1.1em; /* Perubahan ukuran huruf saat kursor diarahkan */
+        }
+
+        .logo-sosmed a {
+            display: inline-block;
+            transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+        }
+
+        .logo-sosmed a:hover {
+            transform: scale(1.1); /* Memperbesar saat hover */
+            color: #ff0080; /* Mengubah warna saat hover */
+        }
+
+        .keterangan h5 {
+            text-align: center;
+            font-weight: bold;
+        }
+
+        /* Media Query untuk perangkat desktop dengan lebar layar minimal 768px */
+        @media only screen and (min-width: 768px) {
+            .keterangan h5 {
+                font-size: 24px; /* Atur ukuran font sesuai kebutuhan untuk desktop */
+            }
+        }
+
+        .tombol {
+            display: flex;
+            justify-content: space-between;
+            margin: 7px;
+            padding: 0;
+            align-items:center;
+        }
+
+        .sebelum a svg, .next a svg {
+            width: 20px;
+            height: 20px; 
+            font-weight: bold;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-video {
+            width: 80%;
+            height: 80%;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 60px;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .video-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 15px;
+        }
+
+        @media only screen and (min-width: 768px) {
+            .video-container video {
+                width: 190px; /* Lebar video di desktop menjadi 250px */
+                height: auto; /* Mengikuti aspek rasio video */
+                cursor: pointer;
+                transition: transform 0.3s ease-in-out;
+            }
+
+            .modal {
+                margin: 60px;
+                position: fixed;
+                width: 90%;
+                height: 90%;
+                background-color: rgba(0, 0, 0, 0.7);
+                align-items: center;
+                justify-content: center;
+            }
+
+            .video-container {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 15px;
+                margin: 50px;
+                }
+
+                .close-button {
+                    position: absolute;
+                    top: 10px;
+                    right: 10px;
+                    font-size: 60px;
+                    color: #fff;
+                    cursor: pointer;
+                }
+            }
+
+            @media only screen and (max-width: 767px) {
+            .video-container video {
+                width: 100px; /* Video mengisi lebar container */
+                height: auto; /* Mengikuti aspek rasio video */
+                cursor: pointer;
+                transition: transform 0.3s ease-in-out;
+            }
+
+            .modal {
+                margin: 50px;
+                position: fixed;
+                width: 70%;
+                height: 70%;
+                background-color: rgba(0, 0, 0, 0.7);
+                align-items: center;
+                justify-content: center;
+            }
+            .video-container {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 7px;
+                margin: 10px;
+            }
+
+            .close-button {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                font-size: 30px;
+                color: #fff;
+                cursor: pointer;
+            }
+        }
+
+        .video-container video:hover {
+            transform: scale(1.1); /* Perbesar video saat hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="m-3 d-flex align-items-start align-items-center">
+        <img src="https://media.licdn.com/dms/image/D4E1BAQGoxKp5Bmzc-w/company-background_10000/0/1655469613244/politeknik_negeri_indramayu_cover?e=2147483647&v=beta&t=L3BTHtK1npAg3GsYm1O59-2R26YyOiE1g89vQEnVy0k" alt="gambar" width="80px" class="logo">
+        <div class="m-2">
+            <span class="fs-4 fw-bold d-block">D4 Sistem Informasi Kota Cerdas 1C</span>
+            <span class="fs-4 fw-bold d-block">Politeknik Negeri Indramayu</span>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid bg-primary">
+            <a class="navbar-brand text-white fw-bold" href="#"><h4>D4SIKC1C</h4></a>
+            <button class="navbar-toggler border-light-subtle" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse fs-4" id="navbarScroll">
+                <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/pages/index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/pages/profil.html">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/pages/mahasiswa.html">Mahasiswa</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link active dropdown-toggle text-white" aria-current="page" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Dokumentasi
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item fs-5" href="/pagesgaleri-foto.html">Galeri Foto</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item fs-5" href="/pagesgaleri-video.html">Galeri Video</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/pagescontact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container">
+    <hr class="mt-0 ">
+        <div class="keterangan">
+            <h5 class="fw-bold text-center m-1">Dokumentasi</h5>
+        </div>
+    <hr>
+    </div>
+
+    <div class="container">
+        <div class="video-container">
+            <!-- Tambahkan event onClick untuk setiap video -->
+            <video src="/video/video1.mp4" class="object-fit-contain" onclick="openVideo('video1.mp4')"></video>
+            <video src="/video/video7.mp4" class="object-fit-contain" onclick="openVideo('video7.mp4')"></video>
+            <video src="/video/video9.mp4" class="object-fit-contain" onclick="openVideo('video9.mp4')"></video>
+            <video src="/video/video10.mp4" class="object-fit-contain" onclick="openVideo('video10.mp4')"></video>
+            <video src="/video/video12.mp4" class="object-fit-contain" onclick="openVideo('video12.mp4')"></video>
+        </div>
+    </div>
+
+    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <button type="button" class="btn-close close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <video id="full-video" src="" class="modal-video" alt="ini video"></video>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <hr>
+        <div class="tombol">
+            <div class="sebelum">
+                <a href="/pages/galeri-foto.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
+                </svg></a>
+            </div>
+            <div class="keterangan">
+                <h5 class="fw-bold text-center mt-2">Galeri Video</h5>
+            </div>
+            <div class="next">
+                <a href="/pages/galeri-foto.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/>
+                </svg></a>
+            </div>
+        </div>
+        <hr>
+    </div>
+        
+    <script>
+        function changePage(pageName) {
+            // Menghapus kelas 'active' dari semua elemen navbar
+            document.querySelectorAll('.navbar-nav, .nav-link').forEach(link => link.classList.remove('active'));
+
+            // Menambahkan kelas 'active' pada elemen yang sesuai dengan halaman yang dibuka
+            const currentPageLink = document.querySelector(`.navbar-nav .nav-link[href*='${pageName}']`);
+            if (currentPageLink) {
+                currentPageLink.classList.add('active');
+            }
+        }
+
+        function openVideo(videoSrc) {
+        const videoElement = document.createElement('video');
+        videoElement.src = videoSrc;
+        videoElement.controls = true;
+        videoElement.style.width = '100%';
+        videoElement.style.height = '100%';
+
+        const closeButton = document.createElement('span');
+        closeButton.innerHTML = '&times;';
+        closeButton.classList.add('close-button');
+        closeButton.addEventListener('click', function() {
+            // Menghentikan pemutaran video sebelum menutup modal
+            videoElement.pause();
+            videoElement.currentTime = 0; // Mengatur posisi video ke awal
+            modal.style.display = 'none';
+        });
+
+        const modal = document.createElement('div');
+        modal.classList.add('modal');
+        modal.appendChild(videoElement);
+        modal.appendChild(closeButton);
+
+        // Menambahkan event listener untuk menutup modal saat diklik di luar video
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                // Menghentikan pemutaran video sebelum menutup modal
+                videoElement.pause();
+                videoElement.currentTime = 0; // Mengatur posisi video ke awal
+                modal.style.display = 'none';
+            }
+        });
+
+        // Menambahkan modal ke dalam body dokumen
+        document.body.appendChild(modal);
+
+        // Menampilkan modal
+        modal.style.display = 'flex';
+    }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>
